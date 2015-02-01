@@ -4,8 +4,9 @@ $google_client_secret = 'kL7yXeIVDlUjeKjxu0SYPhwU';
 $google_redirect_url = 'http://localhost/edmin/admin/google_api_auth.php';
 $google_developer_key = 'AIzaSyAGQKBV098Mzelrgt5H9x3Qz8t5QYBwfNE';
 ###################################################################
-//include("config.php"); 
+include("config.php"); 
 //include google api files
+session_start();
 require_once './api/Google_Client.php';
 require_once './api/contrib/Google_Oauth2Service.php';
 
@@ -47,15 +48,16 @@ $_SESSION['profile_pic_url'] = filter_var($user['picture'], FILTER_VALIDATE_URL)
  $_SESSION['token']    = $gClient->getAccessToken();
  
 if(!empty($_SESSION['apiuser_id'])){
-   $result = mysql_query("SELECT id FROM api_users WHERE id=".$_SESSION['apiuser_id']);
+   $result = mysql_query("SELECT id FROM api_users WHERE id=".$user['id']);
     
       if(mysql_num_rows($result) == 0)
     {      //echo 'Hello! '.$user_name.', Thanks for Registering!';
-        mysql_query("INSERT INTO api_users (id, name, email, link, picture_link , created) VALUES ('".$_SESSION['apiuser_id']."', '".$_SESSION['apiuser_name']."','".$_SESSION['email']."','".$_SESSION['profile_url']."', '".$_SESSION['profile_pic_url']."', now())");
+        mysql_query("INSERT INTO api_users (id, name, email, link, picture_link , created) VALUES ('".$user['id']."', '".$user['name']."','".$user['email']."','".$user['link']."', '".$user['picture']."', now())");
     }
 
 
     header('Location: index.php');
+//	print_r($user);
 }
 }
 else
