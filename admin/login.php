@@ -22,6 +22,21 @@
 			  	<a class="brand" href="#">
 			  		Edmin
 			  	</a>
+<div class="nav-collapse collapse navbar-inverse-collapse">
+				
+					<ul class="nav pull-right">
+
+						<li><a href="google_api_auth.php">
+							Login with Google
+						</a></li>
+
+						
+
+						<li><a href="#">
+							Forgot your password?
+						</a></li>
+					</ul>
+				</div><!-- /.nav-collapse -->
 
 							</div>
 		</div><!-- /navbar-inner -->
